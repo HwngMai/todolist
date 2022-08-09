@@ -41,3 +41,20 @@ document.getElementById("addItem").onclick = function () {
       console.log(err);
     });
 };
+//**FUNCTION xóa task */
+function xoaTask(id) {
+    loadingOn();
+    axios({
+      url: `${BASE_URL}/TaskList/${id}`,
+      method: "DELETE",
+    })
+      .then(function (res) {
+        loadingOff();
+        console.log("res: ", res);
+        getTaskList();
+      })
+      .catch(function (err) {
+        loadingOff();
+        console.log("err: ", err);
+      });
+  }

@@ -6,7 +6,7 @@ renderTask = function (TaskList) {
           <li>${task.id}.
           ${task.name}
           <button onclick="xoaTask('${task.id}')" class="btn btn-danger"> Xóa </button>
-          <button onclick="suaTask('${task.id}')" class="btn btn-warning"> Sửa </button>
+          <button onclick="doneTask('${task.id}')" class="btn btn-warning"> Sửa </button>
           </li>
           `;
     contentHTML += contentTr;
