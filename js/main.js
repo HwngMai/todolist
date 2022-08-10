@@ -129,3 +129,45 @@ function doneTask(id) {
   getTaskDone();
   loadingOff();
 }
+//**FUNCTION sort tên */
+// Get TaskList => res.data
+
+// renderTaskList
+function getTaskListAZ() {
+  loadingOn();
+  axios({
+    url: `${BASE_URL}/TaskList`,
+    method: "GET",
+  })
+    .then(function (res) {
+      loadingOff();
+      console.log(res);
+      // res.data.sort()
+      let TaskListAZ = res.data.sort(compareValues("name"));
+      console.log("TaskListAZ: ", TaskListAZ);
+      renderTask(TaskListAZ);
+    })
+    .catch(function (err) {
+      loadingOff();
+      console.log(err);
+    });
+}
+function getTaskListZA() {
+  loadingOn();
+  axios({
+    url: `${BASE_URL}/TaskList`,
+    method: "GET",
+  })
+    .then(function (res) {
+      loadingOff();
+      console.log(res);
+      // res.data.sort()
+      let TaskListAZ = res.data.sort(compareValues("name"));
+      let TaskListZA = TaskListAZ.reverse();
+      renderTask(TaskListZA);
+    })
+    .catch(function (err) {
+      loadingOff();
+      console.log(err);
+    });
+}

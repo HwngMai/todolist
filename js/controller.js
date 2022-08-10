@@ -23,8 +23,8 @@ renderTaskDone = function (TaskDone) {
             <li class="d-flex align-items-center ">${task.id}.
             ${task.name}
             <div class="btnEdit">
-            <button onclick="xoaTaskDone('${task.id}')" class="btn btn-danger align-self-end"> Xóa </button>
             <button onclick="" class="btn btn-success align-self-end" disabled > Đã xong </button>
+            <button onclick="xoaTaskDone('${task.id}')" class="btn btn-danger align-self-end"> Xóa </button>
             </div>
             </li>
             `;
@@ -57,4 +57,24 @@ function getTaskIsDone(id, taskList) {
       return -1;
     }
   }
+}
+// hàm sắp xếp động
+function compareValues(key, order = "asc") {
+  return function innerSort(a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      // property doesn't exist on either object
+      return 0;
+    }
+
+    const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return order === "desc" ? comparison * -1 : comparison;
+  };
 }
